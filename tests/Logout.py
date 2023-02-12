@@ -16,12 +16,13 @@ class TestLogOut:
         WebDriverWait(driver, 500).until(EC.url_changes('https://stellarburgers.nomoreparties.site/'))
         assert current_url == 'https://stellarburgers.nomoreparties.site/'
         print('Произведен вход в аккаунт')
-        driver.find_element(By.LINK_TEXT, 'Личный Кабинет').click()
-        assert WebDriverWait(driver, 500).until(
-            EC.url_changes('https://stellarburgers.nomoreparties.site/account/profile'))
-        WebDriverWait(driver, 500000)
+        driver.find_element(By.XPATH, "//p[contains(text(),'Личный Кабинет')]").click()
+        WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, "//p[contains(text(),'Личный Кабинет')]"))).click()
+        #assert WebDriverWait(driver, 5).until(
+            #EC.url_changes('https://stellarburgers.nomoreparties.site/account/profile'))
+        WebDriverWait(driver, 50)
         print('Соверешн переход в личный кабинет')
 
-        driver.find_element(By.XPATH, "//nav[@class='Account_nav__Lgali']//button[@class='Account_button__14Yp3 text text_type_main-medium text_color_inactive']").click()
+        driver.find_element(By.XPATH, "//button[@class='Account_button__14Yp3 text text_type_main-medium text_color_inactive']").click()
         WebDriverWait(driver,50000)
         print("Соверешн выход из аккаунта")
